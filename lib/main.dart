@@ -9,97 +9,68 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: GFGTitle(),
+    return const MaterialApp(
+      home: MyHomePage(),
     );
   }
 }
 
-class GFGTitle extends StatefulWidget {
-  @override
-  GFGTitleState createState() => GFGTitleState();
-}
-
-class GFGTitleState extends State<GFGTitle> {
-  String text = "Press me, pls!";
-
-  void _toggleText() {
-    setState(() {
-      if (text == "Press me, pls!") {
-        text = "List Tile pressed";
-      } else {
-        text = "Press me, pls!";
-      }
-    });
-  }
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: const Color(0xFF4CAF50),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  spreadRadius: 2,
-                  blurRadius: 3,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: AppBar(
-              title: const Text(
-                "My List Tile demo",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
-              ),
-              backgroundColor: Colors.transparent,
-              elevation: 0,
+      appBar: AppBar(
+        title: const Padding(
+          padding: EdgeInsets.only(top: 15.0, bottom: 1.0),
+          child: Text(
+            'Flutter Demo Home Page',
+            style: TextStyle(
+              color: Color(0xff2b2830),
+              fontSize: 16,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 7.0, left: 7.0, right: 7.0),
-            child: ListTile(
-              leading: const Icon(Icons.add, color: Color(0xff2397f3)),
-              title: const Padding(
-                padding: EdgeInsets.only(left: 16.0),
-                child: Text(
-                  'GFG Title',
+        ),
+        backgroundColor: const Color(0xffd3bbff),
+      ),
+      body: Container(
+        color: const Color(0xfffffbff),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton.icon(
+                onPressed: () {
+                  // do something
+                },
+                icon: const Icon(
+                  Icons.download,
+                  color: Color(0xff9a9a9a),
+                ),
+                label: const Text(
+                  "Download",
                   style: TextStyle(
-                    color: Color(0xff2397f3),
-                    fontSize: 22,
+                    color: Color(0xff825bc8),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
-              subtitle: const Padding(
-                padding: EdgeInsets.only(left: 16.0),
-                child: Text(
-                  'This is subtitle',
-                  style: TextStyle(
-                    color: Color(0xff2397f3),
-                    fontSize: 12,
-                  ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xfff7f1fb),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                 ),
               ),
-              trailing: const Icon(Icons.check, color: Color(0xff2397f3)),
-              tileColor: const Color(0xFFBBDEFB),
-              onTap: _toggleText,
-            ),
+              const SizedBox(height: 5),
+              Image.network(
+                'https://images.pexels.com/photos/5905557/pexels-photo-5905557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+                width: 300,
+                height: 200,
+                fit: BoxFit.cover,
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: Text(
-              text,
-              style: const TextStyle(fontSize: 24),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
